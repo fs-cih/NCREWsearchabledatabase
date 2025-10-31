@@ -108,12 +108,106 @@
       color: var(--muted);
       font-size: .86rem;
     }
+
+    /* Results table */
+    .results{
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .results-header{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+    .results-header h2{
+      margin: 0;
+      font-size: 1.2rem;
+    }
+    .results-count{
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .table-wrap{
+      overflow: auto;
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,.06);
+      overflow: hidden;
+    }
+    thead{
+      background: #f1f5f9;
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: .75rem;
+      letter-spacing: .05em;
+    }
+    th, td{
+      padding: 14px 16px;
+      vertical-align: top;
+      text-align: left;
+    }
+    tbody tr:nth-child(even){
+      background: #f8fafc;
+    }
+    .match-badge{
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #111827;
+      color: #fff;
+      font-weight: 600;
+      font-size: .95rem;
+    }
+    .match-badge[data-empty="true"]{
+      background: #d1d5db;
+      color: #374151;
+    }
+    .program-name{
+      font-weight: 600;
+    }
+    .org{
+      color: var(--muted);
+      font-size: .95rem;
+    }
+    .pill{
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      margin: 4px 6px 0 0;
+      background: #e5e7eb;
+      color: #111827;
+      border-radius: 999px;
+      font-size: .82rem;
+      line-height: 1.2;
+      white-space: nowrap;
+    }
+    .website-link{
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .website-link:hover,
+    .website-link:focus{
+      text-decoration: underline;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>NCREW Searchable Database</h1>
-    <p class="hint">Use the checkboxes below to describe or filter offerings. (No actions wired yet.)</p>
+    <p class="hint">Choose the characteristics that matter to you—the list below updates instantly with the best matches.</p>
   </header>
 
   <main class="wrap">
@@ -124,28 +218,28 @@
         <article class="card" aria-labelledby="focus-area">
           <h2 id="focus-area">Focus Area</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Research Methodologies</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Policy</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Public Health</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Environmental Health</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Indigenous Knowledge</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Theory</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Ethics</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Leadership</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Community-Based Participatory Research</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Research Training for Communities</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Mentorship and Career Development</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Research Design</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Data Collection</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Data Management</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Data Analysis</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Dissemination</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Physical, Mental, and Behavioral Health Research</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Indigenous Health Research</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Pain-Related Interventions</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Substance Use and Addiction</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Grant Writing and Submission</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Grant Management</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Research Methodologies" />Research Methodologies</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Policy" />Policy</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Public Health" />Public Health</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Environmental Health" />Environmental Health</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Indigenous Knowledge" />Indigenous Knowledge</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Theory" />Theory</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Ethics" />Ethics</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Leadership" />Leadership</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Community-Based Participatory Research" />Community-Based Participatory Research</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Research Training for Communities" />Research Training for Communities</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Mentorship and Career Development" />Mentorship and Career Development</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Research Design" />Research Design</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Data Collection" />Data Collection</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Data Management" />Data Management</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Data Analysis" />Data Analysis</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Dissemination" />Dissemination</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Physical, Mental, and Behavioral Health Research" />Physical, Mental, and Behavioral Health Research</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Indigenous Health Research" />Indigenous Health Research</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Pain-Related Interventions" />Pain-Related Interventions</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Substance Use and Addiction" />Substance Use and Addiction</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Grant Writing and Submission" />Grant Writing and Submission</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Grant Management" />Grant Management</label></li>
           </ul>
         </article>
 
@@ -153,12 +247,12 @@
         <article class="card" aria-labelledby="cert-type">
           <h2 id="cert-type">Certification Type</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Formal Degree Program</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Certificate Program</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Professional Development</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Continuing Education Credit</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Webinar</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Workshop</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Formal Degree Program" />Formal Degree Program</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Certificate Program" />Certificate Program</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Professional Development" />Professional Development</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Continuing Education Credit" />Continuing Education Credit</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Webinar" />Webinar</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Workshop" />Workshop</label></li>
           </ul>
         </article>
 
@@ -166,12 +260,12 @@
         <article class="card" aria-labelledby="host-org">
           <h2 id="host-org">Host Organization Type</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Tribal Nation</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Tribal College or University</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Academic Institution</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Government Agency</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Indigenous Led Organization</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Non-Governmental Organization</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Tribal Nation" />Tribal Nation</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Tribal College or University" />Tribal College or University</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Academic Institution" />Academic Institution</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Government Agency" />Government Agency</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Indigenous Led Organization" />Indigenous Led Organization</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Non-Governmental Organization" />Non-Governmental Organization</label></li>
           </ul>
         </article>
       </div>
@@ -181,12 +275,12 @@
         <article class="card" aria-labelledby="modality">
           <h2 id="modality">Modality</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Online</label></li>
-            <li><label class="checkbox"><input type="checkbox" />In-Person</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Hybrid</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Blended</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Asynchronous</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Synchronous</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Online" />Online</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="In-Person" />In-Person</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Hybrid" />Hybrid</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Blended" />Blended</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Asynchronous" />Asynchronous</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Synchronous" />Synchronous</label></li>
           </ul>
         </article>
 
@@ -194,11 +288,11 @@
         <article class="card" aria-labelledby="education-level">
           <h2 id="education-level">Education Level</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Professional</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Graduate</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Post-Baccalaureate</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Undergraduate / Baccalaureate</label></li>
-            <li><label class="checkbox"><input type="checkbox" />High School</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Professional" />Professional</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Graduate" />Graduate</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Post-Baccalaureate" />Post-Baccalaureate</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Undergraduate / Baccalaureate" />Undergraduate / Baccalaureate</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="High School" />High School</label></li>
           </ul>
         </article>
 
@@ -206,10 +300,10 @@
         <article class="card" aria-labelledby="geo-scope">
           <h2 id="geo-scope">Geographic Scope</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Local or Tribal Specific</label></li>
-            <li><label class="checkbox"><input type="checkbox" />United States National</label></li>
-            <li><label class="checkbox"><input type="checkbox" />North American</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Global</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Local or Tribal Specific" />Local or Tribal Specific</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="United States National" />United States National</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="North American" />North American</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Global" />Global</label></li>
           </ul>
         </article>
 
@@ -217,10 +311,10 @@
         <article class="card" aria-labelledby="funding">
           <h2 id="funding">Funding Availability</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Free</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Scholarship Available</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Paid or For Cost</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Employer Sponsored</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Free" />Free</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Scholarship Available" />Scholarship Available</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Paid or For Cost" />Paid or For Cost</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Employer Sponsored" />Employer Sponsored</label></li>
           </ul>
         </article>
 
@@ -228,9 +322,9 @@
         <article class="card" aria-labelledby="indig-elig">
           <h2 id="indig-elig">Tribal or Indigenous Eligibility</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Open to All</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Indigenous Preference</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Indigenous Only</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Open to All" />Open to All</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Indigenous Preference" />Indigenous Preference</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Indigenous Only" />Indigenous Only</label></li>
           </ul>
         </article>
 
@@ -238,14 +332,262 @@
         <article class="card" aria-labelledby="career-stage">
           <h2 id="career-stage">Career Stage</h2>
           <ul class="options">
-            <li><label class="checkbox"><input type="checkbox" />Early-Career</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Mid-Career</label></li>
-            <li><label class="checkbox"><input type="checkbox" />Senior or Experienced</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Early-Career" />Early-Career</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Mid-Career" />Mid-Career</label></li>
+            <li><label class="checkbox"><input type="checkbox" value="Senior or Experienced" />Senior or Experienced</label></li>
           </ul>
         </article>
       </div>
 
     </section>
+
+    <section class="results" aria-live="polite">
+      <div class="results-header">
+        <h2>Program Matches</h2>
+        <span class="results-count" id="results-count">Loading programs…</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Match</th>
+              <th scope="col">Program Name</th>
+              <th scope="col">Organization</th>
+              <th scope="col">Website</th>
+              <th scope="col">Characteristics</th>
+            </tr>
+          </thead>
+          <tbody id="results-body">
+            <tr><td colspan="5">Preparing data…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
   </main>
+
+  <script>
+    const RAW_DATA = `Program Name,Supporting Organization,Website,Notes,Research Methodologies,Policy,Public Health,Environmental Health,Indigenous Knowledge,Theory,Ethics,Leadership,Community-Based Participatory Research,Research Training for Communities,Mentorship and Career Development,Research Design,Data Collection,Data Management,Data Analysis,Dissemination,"Physical, Mental, and Behavioral Health Research",Indigenous Health Research,Pain-Related Interventions,Substance Use and Addiction,Grant Writing and Submission,Grant Management,Online,In-Person,Hybrid,Blended,Asynchronous,Synchronous,Professional,Graduate,Post-Baccalaureate,Undergraduate / Baccalaureate,High School,Formal Degree Program,Certificate Program,Professional Development,Continuing Education Credit,Webinar,Workshop,Local or Tribal Specific,United States National,North American,Global,Free,Scholarship Available,Paid or For Cost,Employer Sponsored,Open to All,Indigenous Preference,Indigenous Only,Early-Career,Mid-Career,Senior or Experienced,Tribal Nation,Tribal College or University,Academic Institution,Government Agency,Indigenous Led Organization,Non-Governmental Organization
+Public Health Training Certificate for American Indian Health Professionals,Johns Hopkins School of Public Health,Website,,Yes,Yes,Yes,Yes,,,Yes,,Yes,,,,,,,,,Yes,,,,,Yes,,,,,Yes,,,,,,Yes,Yes,Yes,,,,Yes,,,,,,Yes,Yes,Yes,,,Yes,,,,
+Alaska Indigenous Research Program (AKIRP),Alaska Native Tribal Health Consortium (ANTHC) & Alaska Pacific University,Website,,,,,,,,Yes,,Yes,,,,,,,,,,,,,,,Yes,,,,,,,,,,,,Yes,,,,,Yes,,,,Yes,,,Yes,,,,,Yes,,Yes,,,,,
+Native Children's Research Exchange (NCRE) Scholars Program,Colorado School of Public Health,Website,,Yes,,Yes,,,,,,Yes,,,,,,,,,Yes,,,,,,,Yes,,,,Yes,Yes,,,,,,Yes,,,,,Yes,,,,,,,,,Yes,Yes,,Yes,,,Yes,,,,
+Quantitative Biology Workshop,MITx Online,Website,,Yes,,,,,,,,,,,,,,,,Yes,,,,,,,,Yes,,,,Yes,Yes,Yes,Yes,,,,,,,Yes,,Yes,,,,,Yes,,Yes,,,Yes,Yes,Yes,,,Yes,,,,
+Great Lakes Inter-Tribal Epidemiology Center Internship ,Tribal Epidemiology Centers,Website,,Yes,,Yes,,,,,,,,,,Yes,,Yes,,,Yes,,,,,,Yes,Yes,,,,,Yes,,Yes,Yes,,,Yes,,,,,Yes,,,Yes,,,,,Yes,,Yes,,,,,,,
+Albuquerque Area Southwest Tribal Epidemology Center Internship,Albuquerque Area Indian Health Board,Website,,,,Yes,,Yes,,,Yes,,,,,Yes,,Yes,,,,,,,,Yes ,Yes ,,,,Yes ,Yes,Yes,Yes,Yes,,,,Yes,,,,Yes,,,,Yes,,,,,,Yes,Yes,,,,,,,,
+Tribal Undergraduate to Graduate Research Training and Leadership Experiences (TURTLE) Program ,NIH,Website,,Yes,,,,,,,,,,Yes,Yes,,,,,,Yes,,,,,Yes ,Yes ,Yes,,Yes,,,Yes,,Yes,,,,Yes,,,,,Yes,,,Yes,,,,,Yes,,Yes,,,,,,Yes,,,
+Certificate in American Indian and Alaska Native Health,Colorado School of Public Health,Website,,,Yes,Yes,Yes,,,Yes,Yes,Yes,,,,Yes,Yes,Yes,,,,,,,,Yes ,,,,,,,Yes,,,,,Yes,,,,,,Yes,,,,,Yes,,Yes,,,Yes,Yes,Yes,,,Yes,,,,
+LUCE INDIGENOUS KNOWLEDGE FELLOWSHIP,Henry Luce Foundation,Application,,,Yes,,,,Yes,,Yes,,,,,,,,Yes,,,,,,,Yes ,Yes ,,,Yes,,Yes,,,,,,,Yes,,,,,Yes,,,,,Yes,,,,Yes,,,Yes,,,,,Yes,,
+ASPPH/CDC Tribal Health Department Fellowship Program,ASPPH,Website,,,Yes,Yes,,,,Yes,Yes,,,,,,,Yes,,,,,,,,Yes ,Yes,,,,,Yes,Yes,,,,,,Yes,,,,,Yes,,,,,Yes,,Yes,,,Yes,Yes,,,,,,,
+Wy’east Medicine ,NNACOE,Website,,,,,,,,Yes,Yes,,,Yes,,,,,,,,,,,,,Yes ,,,,,,Yes,,,,,,Yes,,,,,Yes,,,,,Yes,,,,Yes,Yes,,,,,,,,
+Indigenous DataSET Fellowship,University of Arizona,Website,,Yes,,Yes,,Yes,,Yes,Yes,,Yes,Yes,Yes,,Yes,Yes,Yes,,Yes,Yes,,,,Yes,,Yes,,Yes,,Yes,Yes,,Yes,,,Yes,Yes,,,,,Yes,,,,Yes,Yes,Yes,,Yes,,Yes,,Yes,,,Yes,,,
+Tribal Data Champions Fellowship,,Website,,Yes,,Yes,,Yes,,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,,,Yes,,Yes,,Yes,,,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+Wellbriety Training Institute,White Bison,Website,,,Yes,Yes,,Yes,,,Yes,,Yes,Yes,,Yes,,Yes,,Yes,Yes,,,Yes,Yes,,Yes,Yes,,Yes,Yes,,,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,Yes,,,,,
+Community Engaged Research Training,Ohio State University ,Website,,Yes,,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,,Yes,Yes,,Yes,,Yes,,Yes,,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Injury and Violence Prevention Fellowship,Indian Health Services,Website,,Yes,,,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,,Yes,,Yes,,Yes,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,Yes,,,
+RISE Summer Academy,Washington State University ,Website,,,Yes,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,,Yes,Yes,,Yes,,Yes,,Yes,,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Native American Summer Research Internship,Univerity of Utah,Website,,Yes,,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,,Yes,,Yes,,Yes,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Mayo Clinic's NAPP,Mayo Clinic ,Website,,,Yes,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,,Yes,Yes,,Yes,,Yes,,Yes,,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Indigenous Public Health Training,University of British Columbia,Website,,Yes,,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,,Yes,,Yes,,Yes,Yes,Yes,,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,Yes,,,
+Indigenous Health Leadership Academy,Arizona State University,Website,,,Yes,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,,Yes,Yes,,Yes,,Yes,,Yes,Yes,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+NCAI's Empowering Leaders Initiave,National Congress of American Indians,Website,,,Yes,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,,Yes,Yes,,Yes,,Yes,,Yes,Yes,,,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+‘Imi Hale,Papa Ola Lokahi,Website,,Yes,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,,Yes,,Yes,,Yes,Yes,Yes,,,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+Undergraduate Fellowship on Native American Health Research,University of New Mexico,Website,,Yes,,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,,Yes,,Yes,,Yes,,,,Yes,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Climate change and Indigenous People and local communities,Coursera,Website,,Yes,Yes,Yes,Yes,Yes,,Yes,,Yes,Yes,Yes,,Yes,Yes,,Yes,,Yes,Yes,Yes,,Yes,,Yes,,Yes,Yes,Yes,,,,,,,Yes,,,,,,,Yes,,,,,,,,,,,,,,,,,Yes
+rETHICS ,University of Washington ,Website,,Yes,,,,Yes ,,Yes ,,Yes ,,,,,,,,,Yes ,,,,,Yes ,Yes ,Yes,,,Yes ,,,,,,,,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Basic Public Health Practice Certificate ,Turtle Mountain College ,Website,,,Yes,Yes,,Yes,,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,,Yes,Yes,,,,,Yes,,,,Yes,Yes,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,,
+Native Organizaing Training,Native Organizers Alliance,Website,,,,Yes,,Yes,,,,Yes,,,,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+Tribal Opioid Response Program,Addiction Technology Transfer Center Network,Website,,,,Yes,,,,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,,Yes,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,,,,
+Clinical Trial Participation Guide for American Indians and Alaska Natives : Partner Toolkit,Urban Indian Health Institute,Website,,,,,Yes,,,,Yes,Yes,Yes,,Yes,Yes,,Yes,Yes,,,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,,,,,,,,Yes,,Yes,,,,,,,,,,,,,,,,,,,
+American Indian Public Health and Wellness Certificate,University of Minnesota ,Website,,,Yes,Yes,,Yes,,Yes,Yes,,Yes,Yes,Yes,,Yes,Yes,Yes,,Yes,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Graduate Certificate - Community Health Online,Southeastern Oklahoma State University,Website,,,Yes,Yes,,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Native Health and The Humanities Certificate,University of North Dakota,Website,,,,Yes,,Yes,,,,Yes,Yes,,,,,,,,Yes,Yes,,,,,,,,,Yes,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Indigenous Health Graduate Certificate,University of Arizona,Website,,Yes,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,Yes,,,Yes,Yes,Yes,Yes,,,,,,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+American Indian and Indigenous Studies Certificate,University of Wisconsin-Madison,Website,,,Yes,Yes,,Yes,,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,,Yes,Yes,,,,,Yes,,,,Yes,Yes,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Social Work with American Indians Graduate Certificate,University of Oklahoma,Website,,,,,,,,,,,,,,,,,,Yes,,,,,,,,,Yes,Yes,,,Yes,,,,,Yes,,,,,,Yes,,,,,,Yes,,Yes,,Yes,,,,,Yes,,,
+Culturally-Based Native Health Certificate Program,Western Carolina University,Website,,Yes,,Yes,,Yes ,Yes,Yes ,,,,Yes,,,,,,Yes,Yes,Yes,,,,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+ACNM Indian Health Care Certificate Course,American College of Natural Medicine,Website,,,,,,,,,,,,,,,,,,,Yes,,,,Yes,Yes,Yes,,,,,Yes,,Yes,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Tribal Behavioral Health Certificate,Tulane University,Website,,,,,,,,,,,,,,,,,,Yes,Yes,,Yes,Yes,,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Indigenous Healing Perspectives Certificate,Washington State University ,Website,,,,,,,,,,,,,,,,,,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Indigenous Public Health Certificate,University of Hawai'I Hilo,Website,,,,Yes,,,,Yes,,,,,Yes,,,Yes,Yes,,Yes,Yes,,,,,,,,,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,Yes,,,,
+Law and Governance Certificates,Falmouth Institute,Website,,,Yes,,,,,,,,,,,,,,,,,,,,Yes,Yes,,,,Yes,,,,,,,,Yes,,,,,,,Yes,,,,,,,,,,,,,,,,Yes,,
+Human Resources Certificates,Falmouth Institute,Website,,,Yes,,,,,,,,,,,,,,,,,,,,Yes,Yes,,,,Yes,,,,,,,,Yes,,,,,,,Yes,,,,,,,,,,,,,,,,Yes,,
+Finance Certficates ,Falmouth Institute,Website,,,Yes,,,,,,,,,,,,,,,,,,,,Yes,Yes,,,,Yes,,,,,,,,Yes,,,,,,,Yes,,,,,,,,,,,,,,,,Yes,,
+Annual Wisconsin American Indian Studies Summer Institiute,Wisconsin Department of Public Instruction,Website,,,,,,,,,,,,,,,,,,,Yes,,Yes,Yes,Yes,,,Yes,,Yes,,,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,Yes,,,
+Native American and Indigenous Studies Graduate Certificate Program,University of California San Diego,Website,,,Yes,,,,,Yes,,,Yes,,,,,,,Yes,Yes,Yes,,,,,Yes,,,,Yes,,Yes,,,,,Yes,,,,,,Yes,,,,Yes,,Yes,Yes,,,Yes,Yes,,,,Yes,,,
+Tribal Scholars for Health and Sustainability ,National Indian Health Board,Website,,,Yes,Yes,,,Yes,,,Yes,,,Yes,,,Yes,Yes,,,,Yes,Yes,Yes,,,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,,,Yes,,Yes,,,Yes,,,,,,,,,,,,,,,,,,,
+Indigenous Public Health Leaders Program ,National Network of Public Health Institutes ,Websites,,,Yes,Yes,,,Yes,,,Yes,,,Yes,,,,Yes,,,Yes,,,Yes,,Yes,Yes,Yes,,Yes,Yes,,Yes,Yes,Yes,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+Community Health Education and Resiliency Program,Albuquerque Area Indian Health Board,Website,,,Yes,Yes,,,Yes,,,Yes,,Yes,,Yes,Yes,Yes,,,,Yes,,,Yes,Yes,,Yes,,Yes,Yes,Yes,Yes,,,,,,Yes,,,Yes,Yes,,,,Yes,,,,Yes,,,Yes,Yes,Yes,,,,,Yes,,
+Leading Tribal Nations Executive Education Program at Harvard Business School,National Congress of American Indians,Website,,,,Yes,,,Yes,,Yes,Yes,,,Yes,,,,,,Yes,Yes,,Yes,Yes,Yes,Yes,,,,,Yes,Yes,,,,,,Yes,,,,Yes,,,,,,Yes,,,,Yes,Yes,Yes,Yes,,,,,Yes,,
+The Next Generation of Tribal Financial Leaders,Native American Finance Officer Association,Website,,,,Yes,,,Yes,,,Yes,,,Yes,,,,,,Yes,Yes,,Yes,Yes,Yes,,,,Yes,Yes,Yes,Yes,Yes,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,,Yes,,
+NARCH Summer Research Training Institue ,Association of American Indian Physicians,Website,,Yes,,Yes,,,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,,Yes,,
+Summer Research Enhancement Program,Dine College,Website,,Yes,,Yes,,,Yes,,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,Yes,,,,Yes,,,,,,,,,,,,,,,Yes,,,,
+Indigenous Substance Use and Addictions Prevention Interdisciplinary Research Education,Indigenous Wellness Reseach Institute,Website,,Yes,,Yes,,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,,Yes,,
+Research Education Core,Native American Cancer Prevention,Website,,Yes,,Yes,,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,Yes,Yes,,Yes,,,,,Yes,Yes,Yes,Yes,Yes,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,,Yes,,
+Community-Engaged Northern Research Course,Straight Up North CA,Website,,Yes,,Yes,,Yes,,,,Yes,Yes,,,,,,,,,,,,,Yes,,,,,Yes,,Yes,,,,,,,Yes,,,,,Yes,,,,,,,,,,,,,,,,Yes,,
+Indigenous Research Methodologies Training Module,First Nations University of Canada ,Website,,,,Yes,,,,,,,,,Yes,Yes,,Yes,,,,,,,,Yes,,,,Yes,,Yes,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+Leadership Training for Maori in Public Health,Digital Indigenous,Website,,,,Yes,,Yes,,,,,,,,,,,,,,,,,,,Yes,,,,,Yes,,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+Maori Leaders Programme,Te Whare Hukahuka,Website,,,,,,,,Yes,Yes,Yes,,Yes,,,,,,,,,,,,,Yes,,,,,Yes,,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,Yes,,,,,,
+Foundation Course in Healthcase and Te Tiriti o Waitangi,Mauriora Heakth Education Research ,Website,,,,Yes,,Yes,,Yes,,Yes,,,Yes,,Yes,,Yes,,Yes,Yes,,,,Yes,,,,Yes,,Yes,Yes,,Yes,,,,Yes,,,,Yes,,,,,,,,,,,,,,Yes,,,,,,
+Foundation Course in Cultural Competency ,Mauriora Heakth Education Research ,Website,,,,Yes,,Yes,,Yes,,Yes,,,,,,,,,Yes,,,,,Yes,,,,Yes,,Yes,Yes,Yes,Yes,,,,Yes,,,,Yes,,,,,,,,,,,,,,Yes,,,,,,
+Indigenous Data Sovereignty and Governance Program,Kowa Collaboration,Website,,Yes,Yes,Yes,,Yes,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,,,,,,Yes,,,,,,Yes,Yes,Yes,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+Indigenous Data Sovereignty,Lowitja Institute,Website,,Yes,,Yes,,Yes,Yes,,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,,,,,,,,Yes,,,,Yes,,Yes,Yes,Yes,Yes,,,,Yes,,,,Yes,,,,,,,,,,Yes,,,,,,,,Yes,,
+Introduction to Ethics in Aboriginal and Torres Strait Islander Research ,Lowitja Institute,Website,,Yes,,Yes,Yes,,Yes,,Yes,Yes,Yes,,Yes,Yes,Yes,Yes,,,Yes,,,,,Yes,,,,Yes,,Yes,Yes,Yes,,,,,Yes,,,,Yes,,,,,,,,,,YEs,,,,,,,,Yes,,
+Community data literacy: Foundations,Lowitja Institute,Website,,Yes,,Yes,,Yes,Yes,,Yes,,Yes,,Yes,Yes,Yes,Yes,,,,,,,,Yes,,,,Yes,,Yes,Yes,Yes,Yes,,,,Yes,,,,Yes,,,,,,,,,,Yes,,,,,,,,Yes,,
+Culturally Responsive Program,Indigenous Allied Health Australia ,Website,,,Yes,Yes,,Yes,,Yes,,Yes,,Yes,,,,,Yes,Yes,Yes,Yes,Yes,,,Yes,Yes,,,Yes,,Yes,Yes,,Yes,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+National Aboriginal Community Controlled Health Organisation E Trainings ,National Aboriginal Community Controlled Health Organisation ,Website,,,Yes,Yes,,Yes,,Yes,,Yes,,Yes,,,,,Yes,Yes,,Yes,Yes,,,Yes,,,,Yes,Yes,Yes,Yes,,,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+Cancer Support Leadership Training ,Indian Health Services,Website,,,,Yes,,Yes,,Yes,Yes,Yes,,Yes,,,,,Yes,,Yes,Yes,,,,,Yes,,,,,Yes,Yes,,Yes,,,,Yes,,,,Yes,,,,,,,,,,,,,,,,,,,
+The Yorga Djenna Bidi Aboriginal Women’s Leadership Program ,Western Australian Aboriginal Leadership Institute ,Website,,,,Yes,,Yes,,Yes,Yes,,,,,,,,Yes,,Yes,,,,,,,Yes,,,Yes,Yes,,,,,,,Yes,,,,Yes,,,,,,,,,,Yes,,,,,,,,Yes,,
+Indigenous cultural saftey training program,The National Collaborating Centre for Determinants of Health ,Website,,,,Yes,,,Yes,Yes,,,,,,,,,,,Yes,,,,,Yes,,,,Yes,,Yes,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,Yes,,,
+BEAHR Indigenous Training Program,Eco Canada,Website,,,Yes,,Yes,,Yes,,Yes,Yes,,Yes,,,,,,,,,,,,Yes,Yes,,,Yes,Yes,Yes,,,,,,,Yes,,,,,,Yes,,,,,,,,,,,,,,,,Yes,,
+Indigenous Virtual Internship Program,Australian Government National Health and Medical Reseach Council ,Website,,Yes,,Yes,,Yes,,Yes,,Yes,,Yes,Yes,Yes,Yes,Yes,,,,,,Yes,Yes,Yes,,,,,Yes,,,Yes,Yes,,,,Yes,,,,Yes,,,,,,,,,,Yes,Yes,,,,,,Yes,,,
+Māori Health Clinical Research Training Fellowships,Gateway,Website,,Yes,,Yes,,Yes,,Yes,,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,Yes,,,,,,Yes,,,,,Yes,,,,,,,Yes,,,,Yes,,,,,,,,,,Yes,Yes,Yes,,,,,,Yes,,,
+Network Environments for Indigenous Health Research,The Canadian Institutes of Health Research,Website,,Yes,Yes,Yes,,Yes,,,,,Yes,Yes,Yes,,,,,,Yes,,,,Yes,Yes,,,,,,Yes,,,,,,,Yes,,,,,,Yes,,,,,,Yes,,Yes,Yes,,,,,,Yes,,,
+Applied Suicide Intervention Skills Training (ASIST),LivingWorks,Website,,,Yes,Yes,,,,Yes,Yes,,,Yes,,,,,,Yes,Yes,Yes,,,,,Yes,,,,,Yes,Yes,Yes,Yes,Yes,,,Yes,,,,Yes,,,,,,,,,,,Yes,Yes,Yes,,,,,Yes,,
+`;
+
+    function parseCSV(text){
+      const rows = [];
+      let current = '';
+      let inQuotes = false;
+      let row = [];
+      for (let i = 0; i < text.length; i++){
+        const char = text[i];
+        if (char === '"'){
+          if (inQuotes && text[i + 1] === '"'){
+            current += '"';
+            i++;
+          } else {
+            inQuotes = !inQuotes;
+          }
+        } else if (char === ',' && !inQuotes){
+          row.push(current);
+          current = '';
+        } else if (char === '\n' && !inQuotes){
+          row.push(current);
+          rows.push(row);
+          row = [];
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+      if (current.length || row.length){
+        row.push(current);
+        rows.push(row);
+      }
+      return rows;
+    }
+
+    const rows = parseCSV(RAW_DATA.trim());
+    const headers = rows.shift().map(h => h.trim());
+    const ignoreKeys = new Set(['Program Name', 'Supporting Organization', 'Website', 'Notes']);
+
+    const programs = rows
+      .filter(row => row[0] && row[0].trim())
+      .map(rawRow => {
+        const entry = {};
+        headers.forEach((header, index) => {
+          entry[header] = (rawRow[index] || '').trim();
+        });
+        const attributes = headers
+          .filter(header => !ignoreKeys.has(header))
+          .filter(header => {
+            const value = (entry[header] || '').replace(/\s+/g, ' ').trim();
+            return /^yes$/i.test(value);
+          });
+        return {
+          name: entry['Program Name'],
+          organization: entry['Supporting Organization'],
+          website: entry['Website'],
+          attributes,
+        };
+      });
+
+    const checkboxInputs = Array.from(document.querySelectorAll('.checkbox input'));
+    const tbody = document.getElementById('results-body');
+    const countEl = document.getElementById('results-count');
+
+    const escapeHtml = (str = '') => str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+
+    function formatWebsite(rawWebsite){
+      const website = (rawWebsite || '').trim();
+      const label = website || '—';
+      if (!website || /^(?:website|websites|application)$/i.test(website)){
+        return `<span>${escapeHtml(label)}</span>`;
+      }
+      const href = website.startsWith('http') ? website : `https://${website}`;
+      const safeHref = escapeHtml(href);
+      return `<a class="website-link" href="${safeHref}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`;
+    }
+
+    function createPills(attrs){
+      if (!attrs.length){
+        return '<span class="pill">No characteristics recorded</span>';
+      }
+      return attrs
+        .sort((a, b) => a.localeCompare(b))
+        .map(attr => `<span class="pill">${escapeHtml(attr)}</span>`)
+        .join('');
+    }
+
+    function render(){
+      const selected = checkboxInputs
+        .filter(input => input.checked)
+        .map(input => input.value.trim());
+
+      const totalFilters = selected.length;
+
+      const scored = programs.map(program => {
+        const matches = totalFilters
+          ? selected.filter(filter => program.attributes.includes(filter)).length
+          : 0;
+        const score = totalFilters ? Math.round((matches / totalFilters) * 100) : null;
+        return { program, matches, score };
+      });
+
+      const filtered = totalFilters
+        ? scored.filter(item => item.matches > 0)
+        : scored;
+
+      filtered.sort((a, b) => {
+        if (totalFilters){
+          if (b.score !== a.score) return b.score - a.score;
+          if (b.matches !== a.matches) return b.matches - a.matches;
+        }
+        return a.program.name.localeCompare(b.program.name);
+      });
+
+      tbody.innerHTML = filtered.length
+        ? filtered.map(({ program, score }) => {
+            const badge = score === null
+              ? '<span class="match-badge" data-empty="true">—</span>'
+              : `<span class="match-badge">${score}%</span>`;
+            return `
+              <tr>
+                <td>${badge}</td>
+                <td><div class="program-name">${escapeHtml(program.name)}</div></td>
+                <td><div class="org">${escapeHtml(program.organization || '—')}</div></td>
+                <td>${formatWebsite(program.website)}</td>
+                <td>${createPills(program.attributes)}</td>
+              </tr>`;
+          }).join('')
+        : `<tr><td colspan="5">No programs match those selections yet. Try adjusting your filters.</td></tr>`;
+
+      const count = filtered.length;
+      if (!totalFilters){
+        countEl.textContent = `${count} program${count === 1 ? '' : 's'} available`;
+      } else {
+        countEl.textContent = `${count} match${count === 1 ? '' : 'es'} for ${totalFilters} selected characteristic${totalFilters === 1 ? '' : 's'}`;
+      }
+    }
+
+    checkboxInputs.forEach(input => input.addEventListener('change', render));
+
+    render();
+  </script>
 </body>
 </html>
