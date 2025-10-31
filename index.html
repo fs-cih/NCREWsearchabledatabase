@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NCREW Searchable Database</title>
+  <style>
+    :root{
+      --bg:#f3f4f6;          /* light gray page background */
+      --card:#ffffff;        /* white cards */
+      --text:#111827;        /* near-black text */
+      --muted:#6b7280;       /* subtle text */
+      --radius:14px;
+      --shadow: 0 1px 2px rgba(0,0,0,.05), 0 8px 24px rgba(0,0,0,.08);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body{
+      margin:0;
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      color: var(--text);
+      background: linear-gradient(#f8fafc, var(--bg));
+    }
+
+    header{
+      padding: 40px 20px 10px;
+      text-align:center;
+    }
+    header h1{
+      margin:0;
+      font-size: clamp(1.6rem, 2.4vw + 1rem, 2.4rem);
+      letter-spacing: .2px;
+    }
+    header p{
+      margin:.5rem 0 0;
+      color: var(--muted);
+      font-size: .975rem;
+    }
+
+    .wrap{
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 18px 20px 64px;
+    }
+
+    /* Two-column responsive grid */
+    .grid{
+      display: grid;
+      gap: 18px;
+      grid-template-columns: 1fr; /* mobile */
+    }
+    @media (min-width: 900px){
+      .grid{ grid-template-columns: 1fr 1fr; } /* two columns on larger screens */
+    }
+
+    .card{
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 18px 18px 12px;
+      border: 1px solid rgba(0,0,0,.06);
+    }
+    .card h2{
+      margin: 0 0 10px 0;
+      font-size: 1.1rem;
+    }
+    .options{
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      columns: 1;           /* single column inside the card by default */
+      column-gap: 24px;
+    }
+    @media (min-width: 520px){
+      .options{ columns: 2; } /* split long lists into two columns when there’s room */
+    }
+    .options li{
+      break-inside: avoid;
+      padding: 6px 0;
+    }
+    .checkbox{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+    .checkbox input{
+      width: 18px;
+      height: 18px;
+      accent-color: #2563eb; /* native checkbox color (modern browsers) */
+    }
+    .hint{
+      margin-top: 2px;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>NCREW Searchable Database</h1>
+    <p class="hint">Use the checkboxes below to describe or filter offerings. (No actions wired yet.)</p>
+  </header>
+
+  <main class="wrap">
+    <section class="grid">
+
+      <!-- Focus Area -->
+      <article class="card" aria-labelledby="focus-area">
+        <h2 id="focus-area">Focus Area</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Research Methodologies</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Policy</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Public Health</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Environmental Health</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Indigenous Knowledge</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Theory</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Ethics</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Leadership</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Community-Based Participatory Research</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Research Training for Communities</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Mentorship and Career Development</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Research Design</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Data Collection</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Data Management</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Data Analysis</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Dissemination</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Physical, Mental, and Behavioral Health Research</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Indigenous Health Research</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Pain-Related Interventions</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Substance Use and Addiction</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Grant Writing and Submission</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Grant Management</label></li>
+        </ul>
+      </article>
+
+      <!-- Modality -->
+      <article class="card" aria-labelledby="modality">
+        <h2 id="modality">Modality</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Online</label></li>
+          <li><label class="checkbox"><input type="checkbox" />In-Person</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Hybrid</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Blended</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Asynchronous</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Synchronous</label></li>
+        </ul>
+      </article>
+
+      <!-- Education Level -->
+      <article class="card" aria-labelledby="education-level">
+        <h2 id="education-level">Education Level</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Professional</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Graduate</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Post-Baccalaureate</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Undergraduate / Baccalaureate</label></li>
+          <li><label class="checkbox"><input type="checkbox" />High School</label></li>
+        </ul>
+      </article>
+
+      <!-- Certification Type -->
+      <article class="card" aria-labelledby="cert-type">
+        <h2 id="cert-type">Certification Type</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Formal Degree Program</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Certificate Program</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Professional Development</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Continuing Education Credit</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Webinar</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Workshop</label></li>
+        </ul>
+      </article>
+
+      <!-- Geographic Scope -->
+      <article class="card" aria-labelledby="geo-scope">
+        <h2 id="geo-scope">Geographic Scope</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Local or Tribal Specific</label></li>
+          <li><label class="checkbox"><input type="checkbox" />United States National</label></li>
+          <li><label class="checkbox"><input type="checkbox" />North American</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Global</label></li>
+        </ul>
+      </article>
+
+      <!-- Funding Availability -->
+      <article class="card" aria-labelledby="funding">
+        <h2 id="funding">Funding Availability</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Free</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Scholarship Available</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Paid or For Cost</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Employer Sponsored</label></li>
+        </ul>
+      </article>
+
+      <!-- Tribal or Indigenous Eligibility -->
+      <article class="card" aria-labelledby="indig-elig">
+        <h2 id="indig-elig">Tribal or Indigenous Eligibility</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Open to All</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Indigenous Preference</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Indigenous Only</label></li>
+        </ul>
+      </article>
+
+      <!-- Career Stage -->
+      <article class="card" aria-labelledby="career-stage">
+        <h2 id="career-stage">Career Stage</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Early-Career</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Mid-Career</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Senior or Experienced</label></li>
+        </ul>
+      </article>
+
+      <!-- Host Organization Type -->
+      <article class="card" aria-labelledby="host-org">
+        <h2 id="host-org">Host Organization Type</h2>
+        <ul class="options">
+          <li><label class="checkbox"><input type="checkbox" />Tribal Nation</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Tribal College or University</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Academic Institution</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Government Agency</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Indigenous Led Organization</label></li>
+          <li><label class="checkbox"><input type="checkbox" />Non-Governmental Organization</label></li>
+        </ul>
+      </article>
+
+    </section>
+  </main>
+</body>
+</html>
