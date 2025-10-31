@@ -193,6 +193,10 @@
       line-height: 1.2;
       white-space: nowrap;
     }
+    .pill--match{
+      background: #047857;
+      color: #fff;
+    }
     .website-link{
       color: #2563eb;
       text-decoration: none;
@@ -524,13 +528,17 @@ Applied Suicide Intervention Skills Training (ASIST),LivingWorks,Website,,,Yes,Y
       return `<a class="website-link" href="${safeHref}" target="_blank" rel="noopener">${escapeHtml(label)}</a>`;
     }
 
-    function createPills(attrs){
+    function createPills(attrs, selectedSet){
       if (!attrs.length){
         return '<span class="pill">No characteristics recorded</span>';
       }
       return attrs
         .sort((a, b) => a.localeCompare(b))
-        .map(attr => `<span class="pill">${escapeHtml(attr)}</span>`)
+        .map(attr => {
+          const isMatch = selectedSet.size && selectedSet.has(attr);
+          const cls = isMatch ? 'pill pill--match' : 'pill';
+          return `<span class="${cls}">${escapeHtml(attr)}</span>`;
+        })
         .join('');
     }
 
@@ -540,6 +548,7 @@ Applied Suicide Intervention Skills Training (ASIST),LivingWorks,Website,,,Yes,Y
         .map(input => input.value.trim());
 
       const totalFilters = selected.length;
+      const selectedSet = new Set(selected);
 
       const scored = programs.map(program => {
         const matches = totalFilters
@@ -572,7 +581,7 @@ Applied Suicide Intervention Skills Training (ASIST),LivingWorks,Website,,,Yes,Y
                 <td><div class="program-name">${escapeHtml(program.name)}</div></td>
                 <td><div class="org">${escapeHtml(program.organization || '—')}</div></td>
                 <td>${formatWebsite(program.website)}</td>
-                <td>${createPills(program.attributes)}</td>
+                <td>${createPills(program.attributes, selectedSet)}</td>
               </tr>`;
           }).join('')
         : `<tr><td colspan="5">No programs match those selections yet. Try adjusting your filters.</td></tr>`;
